@@ -38,39 +38,39 @@ Sono presenti numerose relazioni N:M (es. Partecipazione a eventi, Assegnazione 
 
 ---
 
-## ⚙ Funzionalità Principali
+##   Funzionalità Principali
 
-Registrazione e autenticazione per ruoli (Cliente, Staff, Gestore)
-Il sistema supporta un processo di registrazione e login differenziato in base al ruolo.
+###  Registrazione e autenticazione per ruoli (Cliente, Staff, Gestore)
+Il sistema supporta la registrazione e il login differenziato per ruolo, con interfacce personalizzate:
+- I **clienti** possono effettuare prenotazioni, iscriversi agli eventi e lasciare recensioni.
+- Gli **utenti staff** visualizzano gli incarichi evento assegnati.
+- I **gestori** accedono a una dashboard amministrativa per la gestione di camere, eventi e utenti.
 
-I clienti possono effettuare prenotazioni, iscriversi agli eventi e lasciare recensioni.
+###  Gestione delle prenotazioni
+I clienti selezionano il periodo di soggiorno e le camere, con la possibilità di aggiungere **servizi extra**.  
+Il sistema aggiorna automaticamente lo stato delle prenotazioni in base alla data, distinguendo tra:
+- In attesa
+- In corso
+- Completata
+- Annullata
 
-Gli utenti staff visualizzano gli incarichi evento assegnati.
+###  Gestione degli eventi locali
+Gli eventi includono titolo, descrizione, data e numero massimo di partecipanti.  
+- I **clienti** possono iscriversi fino al raggiungimento del limite.  
+- Gli **utenti staff** vengono assegnati a eventi specifici con un ruolo dedicato (es. *Chef*, *Guida*, *Barman*).
 
-I gestori accedono a una dashboard amministrativa per la gestione di camere, eventi e utenti.
+###  Recensioni basate su esperienze reali
+I clienti possono recensire solo **camere**, **eventi** o **servizi extra** realmente utilizzati.  
+- È consentita **una sola recensione per elemento** associato alla propria prenotazione o partecipazione.
 
-Gestione delle prenotazioni
-I clienti possono selezionare un intervallo di date, scegliere le camere disponibili e aggiungere servizi extra.
-Il sistema gestisce automaticamente lo stato delle prenotazioni (in attesa, in corso, completata o annullata), in base alla data corrente.
+###  Dashboard personale e storico
+- I **clienti** visualizzano un archivio dettagliato delle prenotazioni effettuate, con possibilità di recensire servizi conclusi.  
+- Gli **utenti staff** accedono all’elenco degli eventi a cui sono stati assegnati, con data e ruolo.
 
-Gestione degli eventi locali
-Gli eventi includono titolo, descrizione, data e posti disponibili.
-I clienti possono iscriversi agli eventi fino a esaurimento posti.
-Gli utenti staff vengono assegnati ai singoli eventi con un ruolo specifico (es. Chef, Guida, Barman).
-
-Recensioni vincolate all’esperienza reale
-I clienti possono recensire camere, servizi extra o eventi solo se effettivamente utilizzati tramite una prenotazione o partecipazione.
-È consentita una sola recensione per elemento.
-
-Dashboard personale e storico
-
-I clienti accedono a un archivio delle prenotazioni, con possibilità di recensire gli elementi utilizzati.
-
-Gli utenti staff vedono l’elenco degli eventi futuri a cui sono stati assegnati, con data e ruolo.
 
 ---
 
-## 🛠️ Tecnologie Utilizzate
+## 🛠 Tecnologie Utilizzate
 
 | Componente | Tecnologia |
 |------------|------------|
@@ -81,7 +81,7 @@ Gli utenti staff vedono l’elenco degli eventi futuri a cui sono stati assegnat
 
 ---
 
-## 🧪 Installazione
+##  Installazione
 
 Assicurarsi di avere:
 - Python ≥ 3.9
@@ -97,7 +97,7 @@ python manage.py migrate
 
 ---
 
-## 🧱 Configurazione del Database
+##  Configurazione del Database
 
 Tutte le tabelle verranno generate automaticamente tramite il file `models.py`. I dati utente sono organizzati nella tabella `Utente`, che distingue tra *Cliente*, *Staff* e *Gestore* usando un campo `ruolo`.
 
@@ -106,7 +106,7 @@ Le relazioni includono:
 
 ---
 
-## 🚀 Utilizzo
+##  Utilizzo
 
 Dopo la configurazione, avviare il server con:
 
@@ -126,7 +126,7 @@ Aprire il browser su: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## 🔐 Sicurezza
+##  Sicurezza
 
 Il sistema implementa:
 - **Hashing password** con SHA256
@@ -137,7 +137,7 @@ Il sistema implementa:
 
 ---
 
-## 📄 Licenza
+##  Licenza MIT
 
 Questo progetto è stato realizzato da **Andrea Magliulo** per il corso di **Basi di Dati** – Università degli Studi, A.A. 2024/2025.  
 Uso didattico e personale. Non destinato alla distribuzione commerciale.
