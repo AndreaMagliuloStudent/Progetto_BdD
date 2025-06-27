@@ -7,7 +7,7 @@ Alla base del sistema vi è un database relazionale strutturato che memorizza tu
 
 ---
 
-## 📚 Indice
+##  Indice
 
 - [Modello Entità/Relazione](#modello-entitàrelazione)
 - [Funzionalità Principali](#funzionalità-principali)
@@ -20,9 +20,11 @@ Alla base del sistema vi è un database relazionale strutturato che memorizza tu
 
 ---
 
-## 🧩 Modello Entità/Relazione
+##  Modello Entità/Relazione
 
 Il database è stato progettato con un modello E/R che centralizza le informazioni sull’**entità Utente**, specializzata in tre categorie disgiunte: *Cliente*, *Staff* e *Gestore*. L'entità viene gestita tramite una singola tabella relazionale, arricchita da attributi opzionali per i diversi ruoli.
+
+![B6B_Magliulo_e-r_risolto](https://github.com/user-attachments/assets/21a6b7fe-0cc5-41e3-a67e-7b3060daa783)
 
 Le principali entità sono:
 - `Utente (Cliente, Staff, Gestore)`
