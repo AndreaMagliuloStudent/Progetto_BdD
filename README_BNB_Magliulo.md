@@ -139,5 +139,5 @@ Il sistema implementa:
 
 ##  Licenza MIT
 
-Questo progetto è stato realizzato da **Andrea Magliulo** per il corso di **Basi di Dati** – Università degli Studi, A.A. 2024/2025.  
+Questo progetto è stato realizzato da **Andrea Magliulo** per il corso di **Basi di Dati** – Università degli Studi di napoli Parthenope, A.A. 2024/2025.  
 Uso didattico e personale. Non destinato alla distribuzione commerciale.
