@@ -38,22 +38,35 @@ Sono presenti numerose relazioni N:M (es. Partecipazione a eventi, Assegnazione 
 
 ---
 
-## ⚙️ Funzionalità Principali
+## ⚙ Funzionalità Principali
 
-**Per i clienti:**
-- Registrazione e login
-- Prenotazione camere + servizi extra
-- Iscrizione a eventi locali
-- Scrittura recensioni (post-soggiorno)
+Registrazione e autenticazione per ruoli (Cliente, Staff, Gestore)
+Il sistema supporta un processo di registrazione e login differenziato in base al ruolo.
 
-**Per lo staff:**
-- Visualizzazione eventi assegnati
-- Ruolo operativo specifico per evento
+I clienti possono effettuare prenotazioni, iscriversi agli eventi e lasciare recensioni.
 
-**Per i gestori:**
-- Dashboard di controllo
-- Creazione e modifica di eventi e camere
-- Accesso a statistiche e informazioni utenti
+Gli utenti staff visualizzano gli incarichi evento assegnati.
+
+I gestori accedono a una dashboard amministrativa per la gestione di camere, eventi e utenti.
+
+Gestione delle prenotazioni
+I clienti possono selezionare un intervallo di date, scegliere le camere disponibili e aggiungere servizi extra.
+Il sistema gestisce automaticamente lo stato delle prenotazioni (in attesa, in corso, completata o annullata), in base alla data corrente.
+
+Gestione degli eventi locali
+Gli eventi includono titolo, descrizione, data e posti disponibili.
+I clienti possono iscriversi agli eventi fino a esaurimento posti.
+Gli utenti staff vengono assegnati ai singoli eventi con un ruolo specifico (es. Chef, Guida, Barman).
+
+Recensioni vincolate all’esperienza reale
+I clienti possono recensire camere, servizi extra o eventi solo se effettivamente utilizzati tramite una prenotazione o partecipazione.
+È consentita una sola recensione per elemento.
+
+Dashboard personale e storico
+
+I clienti accedono a un archivio delle prenotazioni, con possibilità di recensire gli elementi utilizzati.
+
+Gli utenti staff vedono l’elenco degli eventi futuri a cui sono stati assegnati, con data e ruolo.
 
 ---
 
