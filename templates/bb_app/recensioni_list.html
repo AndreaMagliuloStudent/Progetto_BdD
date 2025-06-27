@@ -1,0 +1,34 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Le Tue Recensioni{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Le Tue Recensioni</h2>
+
+  {% if recensioni %}
+    <ul class="list-group mt-4">
+      {% for r in recensioni %}
+        <li class="list-group-item">
+          <strong>Tipo:</strong>
+          {% if r.comprende %}
+            Camera {{ r.comprende.camera.numero }} – {{ r.comprende.camera.tipologia }}
+          {% elif r.servizio %}
+            Servizio: {{ r.servizio.tipo }}
+          {% elif r.evento %}
+            Evento: {{ r.evento.titolo }}
+          {% endif %}
+          {% if r.data_fine %}
+            ({{ r.data_fine|date:"d/m/Y" }})
+          {% endif %}
+          <br>
+          <strong>Voto:</strong> {{ r.voto }} ⭐<br>
+          <strong>Recensione:</strong> {{ r.testo }}<br>
+          <small class="text-muted">Data: {{ r.data|date:"d/m/Y" }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info mt-3">Non hai ancora lasciato nessuna recensione.</div>
+  {% endif %}
+</div>
+{% endblock %}

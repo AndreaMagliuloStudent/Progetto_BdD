@@ -1,0 +1,19 @@
+{% extends "bb_app/base.html" %}
+{% load static %}
+{% block title %}Home - B&B Magliulo{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column align-items-center justify-content-center mt-5">
+  <img src="{% static 'img/logo.png' %}" alt="Logo B&B Magliulo" class="img-fluid" style="max-width: 380px;">
+
+  <h1 class="mt-4 fw-bold text-center">Benvenuto al B&B <span class="text-primary">Magliulo</span></h1>
+  <p class="lead text-muted text-center mb-4">
+    Accoglienza, comfort e calore familiare. Scopri i nostri servizi e vivi un soggiorno indimenticabile.
+  </p>
+
+  <div class="d-flex gap-3">
+    <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4">Accedi</a>
+    <a href="{% url 'registrazione' %}" class="btn btn-outline-secondary btn-lg px-4">Registrati</a>
+  </div>
+</div>
+{% endblock %}

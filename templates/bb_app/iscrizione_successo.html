@@ -1,0 +1,25 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Iscrizione completata{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h2 class="text-success mb-4"> Iscrizione all'evento completata! </h2>
+
+    <p class="lead">
+        Ti sei iscritto correttamente all’evento <strong>{{ evento.titolo }}</strong> previsto per il
+        <strong>{{ evento.data_evento|date:"d F Y" }}</strong>.
+    </p>
+
+    <div class="my-4">
+        <img src="/static/img/successo.png" class="img-fluid" style="max-width: 180px;" aria-hidden="true">
+    </div>
+
+    <p class="text-muted mt-3 mb-4">
+        Ti aspettiamo! Puoi consultare tutti gli eventi a cui sei iscritto dalla sezione dedicata.
+    </p>
+
+    <a href="{% url 'eventi_iscritti' %}" class="btn btn-primary btn-lg">
+        Vai ai miei eventi
+    </a>
+</div>
+{% endblock %}

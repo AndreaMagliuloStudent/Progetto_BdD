@@ -1,0 +1,14 @@
+{% if successo %}
+  <div class="alert alert-success">Iscrizione avvenuta con successo!</div>
+{% elif errore %}
+  <div class="alert alert-danger">{{ errore }}</div>
+{% endif %}
+
+{% if not gia_iscritto and not successo %}
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-primary">Iscriviti</button>
+  </form>
+{% else %}
+  <p>Stato: <strong>Già iscritto</strong> oppure iscrizione completata.</p>
+{% endif %}

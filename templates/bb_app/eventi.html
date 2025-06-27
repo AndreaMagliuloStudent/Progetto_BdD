@@ -1,0 +1,37 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Eventi Disponibili{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Eventi disponibili</h2>
+  {% if eventi %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for evento in eventi %}
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ evento.titolo }}</h5>
+              <p class="card-text">{{ evento.descrizione }}</p>
+              <p><strong>Data:</strong> {{ evento.data_evento }}</p>
+              <p><strong>Posti disponibili:</strong> {{ evento.posti_disponibili }}</p>
+
+              {% if evento.id in iscritti %}
+                <button class="btn btn-outline-secondary" disabled>Già Iscritto</button>
+              {% elif evento.posti_disponibili > 0 %}
+                <form method="post" action="{% url 'iscrizione_evento' evento.id %}">
+                  {% csrf_token %}
+                  <button class="btn btn-success">Iscriviti</button>
+                </form>
+              {% else %}
+                <button class="btn btn-danger" disabled>Posti esauriti</button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Nessun evento disponibile al momento.</p>
+  {% endif %}
+</div>
+{% endblock %}

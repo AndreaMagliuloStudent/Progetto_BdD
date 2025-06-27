@@ -1,0 +1,56 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Scrivi una Recensione{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 700px;">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Scrivi una Recensione</h3>
+
+      <!-- Camere -->
+      {% if camere %}
+      <h5 class="mt-4">Camere</h5>
+      <ul class="list-group list-group-flush mb-3">
+        {% for c in camere %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>Camera {{ c.camera.numero }} – {{ c.camera.tipologia }} (Check-out: {{ c.prenotazione.check_out|date:"d/m/Y" }})</span>
+          <a href="{% url 'recensisci_camera' c.id %}?tipo=camera" class="btn btn-outline-primary btn-sm">Recensisci</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <!-- Servizi Extra -->
+      {% if servizi_extra %}
+      <h5 class="mt-4">Servizi Extra</h5>
+      <ul class="list-group list-group-flush mb-3">
+        {% for s in servizi_extra %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>{{ s.servizio.tipo }} – Prenotazione del {{ s.prenotazione.check_out|date:"d/m/Y" }}</span>
+          <a href="{% url 'recensisci_servizio' s.id %}?tipo=servizio" class="btn btn-outline-primary btn-sm">Recensisci</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <!-- Eventi -->
+      {% if eventi %}
+      <h5 class="mt-4">Eventi</h5>
+      <ul class="list-group list-group-flush">
+        {% for e in eventi %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>{{ e.evento.titolo }} ({{ e.evento.data_evento|date:"d/m/Y" }})</span>
+          <a href="{% url 'recensisci_evento' e.id %}?tipo=evento" class="btn btn-outline-primary btn-sm">Recensisci</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if not camere and not servizi_extra and not eventi %}
+      <p class="text-muted text-center mt-4">Non hai ancora elementi da recensire.</p>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

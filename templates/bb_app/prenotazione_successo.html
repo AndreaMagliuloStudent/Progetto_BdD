@@ -1,0 +1,26 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Prenotazione completata{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h2 class="text-success mb-4"> Prenotazione completata!</h2>
+
+    <p class="lead">
+        La tua prenotazione dal
+        <strong>{{ prenotazione.check_in|date:"d F Y" }}</strong> al
+        <strong>{{ prenotazione.check_out|date:"d F Y" }}</strong> è stata registrata correttamente.
+    </p>
+
+    <div class="my-4">
+        <img src="/static/img/successo.png" class="img-fluid" style="max-width: 180px;" aria-hidden="true">
+    </div>
+
+    <p class="text-muted mt-3 mb-4">
+         Grazie per aver scelto il nostro B&B. Non vediamo l’ora di accoglierti con il massimo comfort e ospitalità!
+    </p>
+
+    <a href="{% url 'storico_prenotazioni' %}" class="btn btn-primary btn-lg">
+        Vai allo storico prenotazioni
+    </a>
+</div>
+{% endblock %}

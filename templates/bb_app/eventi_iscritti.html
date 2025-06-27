@@ -1,0 +1,28 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Eventi Iscritti{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Eventi a cui sei iscritto</h2>
+  {% if eventi_partecipati %}
+    <ul class="list-group">
+      {% now "Y-m-d" as oggi %}
+      {% for p in eventi_partecipati %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ p.evento.titolo }}</strong> - {{ p.evento.data_evento|date:"d F Y" }}<br>
+            Iscritto il: {{ p.data_iscrizione|date:"d F Y" }}
+          </div>
+          {% if p.evento.data_evento|stringformat:"s" < oggi %}
+            <span class="badge bg-secondary">Terminato</span>
+          {% else %}
+            <span class="badge bg-success">Prenotato</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Non ti sei ancora iscritto a nessun evento.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+  <h2 class="text-center mb-4">Accesso utente</h2>
+
+  {% if error %}
+    <div class="alert alert-danger text-center">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" class="p-4 border rounded bg-white shadow-sm">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="ruolo" class="form-label">Ruolo</label>
+      <select name="ruolo" id="ruolo" class="form-select" required>
+        <option value="">-- Seleziona --</option>
+        <option value="Cliente">Cliente</option>
+        <option value="Staff">Staff</option>
+        <option value="Gestore">Gestore</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" id="password" class="form-control" required>
+    </div>
+
+    <div class="d-grid mt-4 mb-2">
+      <button type="submit" class="btn btn-primary">Accedi</button>
+    </div>
+
+    <p class="text-center text-muted mb-0">
+      Non hai un account?
+      <a href="{% url 'registrazione' %}">Registrati ora</a>
+    </p>
+  </form>
+</div>
+{% endblock %}

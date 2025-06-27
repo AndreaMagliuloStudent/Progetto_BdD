@@ -1,0 +1,24 @@
+{% extends "bb_app/base.html" %}
+{% block title %}I miei incarichi{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Eventi locali assegnati</h2>
+
+  {% if incarichi %}
+    <ul class="list-group">
+      {% for a in incarichi %}
+        <li class="list-group-item">
+          <strong>{{ a.evento.titolo }}</strong>
+          ({{ a.evento.data_evento|date:"d/m/Y" }})<br>
+          <span class="text-muted">Ruolo: {{ a.ruolo_evento }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info">
+      Al momento non hai incarichi assegnati.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

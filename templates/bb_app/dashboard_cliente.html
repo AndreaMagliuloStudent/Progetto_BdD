@@ -1,0 +1,62 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Dashboard Cliente{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+
+    <!-- titolo più marcato  -->
+    <h1 class="display-5 fw-bold mb-3">
+        Benvenuto {{ utente.nome }} {{ utente.cognome }}!
+    </h1>
+
+    <p class="lead mb-5">
+        Questa è la tua area riservata cliente. Da qui puoi accedere ai tuoi servizi personalizzati.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+        <!-- Prenotazioni -->
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Prenotazioni</h5>
+                    <p class="card-text">
+                        Effettua una nuova prenotazione o consulta lo storico delle tue prenotazioni passate.
+                    </p>
+                    <a href="{% url 'effettua_prenotazione' %}" class="btn btn-primary me-2">Nuova Prenotazione</a>
+                    <a href="{% url 'storico_prenotazioni' %}" class="btn btn-outline-secondary">Storico</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eventi -->
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Eventi locali</h5>
+                    <p class="card-text">
+                        Scopri gli eventi disponibili e iscriviti per partecipare.
+                    </p>
+                    <a href="{% url 'iscrizione_eventi' %}" class="btn btn-success me-2">Iscriviti a un Evento</a>
+                    <a href="{% url 'eventi_iscritti' %}" class="btn btn-outline-secondary">Eventi Iscritti</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recensioni -->
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Recensioni</h5>
+                    <p class="card-text">
+                        Lascia una recensione sui servizi, eventi o camere di cui hai usufruito.
+                    </p>
+                    <a href="{% url 'scrivi_recensione' %}" class="btn btn-warning text-white me-2">Scrivi Recensione</a>
+                    <a href="{% url 'visualizza_recensioni' %}" class="btn btn-outline-secondary">Visualizza Tutte</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

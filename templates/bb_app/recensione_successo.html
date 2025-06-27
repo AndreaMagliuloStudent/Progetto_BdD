@@ -1,0 +1,24 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Recensione inviata{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h2 class="text-success mb-4"> Recensione inviata con successo! </h2>
+
+    <p class="lead">
+        Grazie per aver condiviso la tua opinione. Il tuo contributo aiuterà altri ospiti!
+    </p>
+
+    <div class="my-4">
+        <img src="/static/img/successo.png" class="img-fluid" style="max-width: 180px;" aria-hidden="true">
+    </div>
+
+    <p class="text-muted mt-3 mb-4">
+        Puoi consultare o gestire tutte le tue recensioni dalla sezione dedicata.
+    </p>
+
+    <a href="{% url 'visualizza_recensioni' %}" class="btn btn-primary btn-lg">
+        Vai alle mie recensioni
+    </a>
+</div>
+{% endblock %}

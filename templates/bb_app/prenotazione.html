@@ -1,0 +1,85 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Effettua Prenotazione{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Effettua una prenotazione</h2>
+
+  {% if error %}
+    <div class="alert alert-danger text-center">{{ error }}</div>
+  {% endif %}
+
+  <!-- Fase 1: Filtri -->
+  <form method="get" class="mb-5">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Data check-in</label>
+        <input type="date" name="check_in" class="form-control" value="{{ check_in }}" required>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Data check-out</label>
+        <input type="date" name="check_out" class="form-control" value="{{ check_out }}" required>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Numero ospiti</label>
+        <input type="number" name="numero_ospiti" class="form-control" min="1" value="{{ numero_ospiti }}" required>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-dark px-4">Verifica disponibilità</button>
+    </div>
+  </form>
+
+  {% if camere %}
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="check_in" value="{{ check_in }}">
+    <input type="hidden" name="check_out" value="{{ check_out }}">
+    <input type="hidden" name="numero_ospiti" value="{{ numero_ospiti }}">
+
+    <!-- Camere -->
+    <h4 class="mb-3">Camere disponibili</h4>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for camera in camere %}
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <img src="{{ camera.immagine_url }}" class="card-img-top" alt="Camera {{ camera.numero }}">
+            <div class="card-body">
+              <h5 class="card-title">Camera {{ camera.numero }} - {{ camera.tipologia|capfirst }}</h5>
+              <p class="card-text">Prezzo: <strong>{{ camera.prezzo_per_notte }}€</strong> a notte</p>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="camere" value="{{ camera.id }}" id="cam_{{ camera.id }}">
+                <label class="form-check-label" for="cam_{{ camera.id }}">Seleziona questa camera</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Servizi extra -->
+    {% if servizi %}
+    <div class="mt-5">
+      <h4 class="mb-3">Servizi extra (opzionali)</h4>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
+        {% for servizio in servizi %}
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="servizi_extra" value="{{ servizio.id }}" id="srv_{{ servizio.id }}">
+            <label class="form-check-label" for="srv_{{ servizio.id }}">
+              {{ servizio.tipo|capfirst }} – {{ servizio.prezzo }}€
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-success px-5">Conferma prenotazione</button>
+    </div>
+  </form>
+  {% elif check_in and check_out %}
+    <p class="text-danger text-center">Nessuna camera disponibile per il periodo selezionato.</p>
+  {% endif %}
+</div>
+{% endblock %}

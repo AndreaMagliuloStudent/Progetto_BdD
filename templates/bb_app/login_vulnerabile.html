@@ -1,0 +1,46 @@
+{% extends 'bb_app/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Accesso utente vulnerabile</h2>
+
+    {% comment %}
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="ruolo" class="form-label">Ruolo</label>
+            <select class="form-select" name="ruolo" id="ruolo">
+                <option value="cliente">Cliente</option>
+                <option value="staff">Staff</option>
+                <option value="gestore">Gestore</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" name="email">
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-danger w-100">Accedi (non sicuro)</button>
+    </form>
+    {% endcomment %}
+
+    <div class="alert alert-warning text-center">
+        <strong>Login disattivato.</strong> Questa versione vulnerabile è stata commentata per motivi di sicurezza.
+    </div>
+
+    <p class="mt-3 text-center">
+        Non hai un account? <a href="{% url 'registrazione' %}">Registrati</a>
+    </p>
+</div>
+{% endblock %}

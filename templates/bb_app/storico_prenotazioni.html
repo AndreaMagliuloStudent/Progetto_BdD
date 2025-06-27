@@ -1,0 +1,76 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Storico Prenotazioni{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Storico Prenotazioni</h2>
+
+  {% if ordini %}
+    {% for pren in ordini %}
+      <div class="card my-4">
+        <div class="card-header">
+          Prenotazione #{{ pren.id }} – {{ pren.stato|title }}
+          <small class="text-muted">({{ pren.data_prenotazione|date:"d/m/Y" }})</small>
+        </div>
+
+        <div class="card-body">
+          <p>
+            <strong>Check-in:</strong> {{ pren.check_in|date:"d/m/Y" }}<br>
+            <strong>Check-out:</strong> {{ pren.check_out|date:"d/m/Y" }}
+          </p>
+
+          {# ---------- CAMERE ---------- #}
+          <h5>Camere:</h5>
+          <ul>
+            {% for c in pren.comprende_set.all %}
+              <li>
+                Camera {{ c.camera.numero }} – {{ c.camera.get_tipologia_display }}
+                ({{ c.numero_ospiti }} ospiti)<br>
+                <strong>Prezzo:</strong> €{{ c.prezzo_finale }}
+
+                {% if pren.soggiorno_terminato %}
+                  {% if c.id in pren.camere_recensite %}
+                    <span class="badge bg-success ms-2">Già recensita</span>
+                  {% else %}
+                    <a href="{% url 'recensisci_camera' c.id %}"
+                       class="btn btn-sm btn-outline-primary mt-2">
+                      Recensisci
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+
+          {# ---------- SERVIZI EXTRA ---------- #}
+          <h5>Servizi Extra:</h5>
+          <ul>
+            {% for a in pren.aggiunta_set.all %}
+              <li>
+                {{ a.servizio.get_tipo_display }} (€{{ a.servizio.prezzo }})
+
+                {% if pren.soggiorno_terminato %}
+                  {% if a.servizio.id in pren.servizi_recensiti %}
+                    <span class="badge bg-success ms-2">Già recensito</span>
+                  {% else %}
+                    <a href="{% url 'recensisci_servizio' a.id %}"
+                       class="btn btn-sm btn-outline-primary mt-2">
+                      Recensisci
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </li>
+            {% empty %}
+              <li>Nessun servizio extra aggiunto</li>
+            {% endfor %}
+          </ul>
+
+          {# *** SEZIONE EVENTI PARTECIPATI RIMOSSA *** #}
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="alert alert-info">Nessuna prenotazione effettuata finora.</div>
+  {% endif %}
+</div>
+{% endblock %}

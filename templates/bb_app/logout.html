@@ -1,0 +1,8 @@
+{% extends "bb_app/base.html" %}
+
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Sei stato disconnesso con successo.</h2>
+<a class="btn btn-primary d-block mx-auto" href="{% url 'home' %}">Torna alla Home</a>
+{% endblock %}

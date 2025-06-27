@@ -1,0 +1,35 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Scrivi una Recensione{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Scrivi una Recensione</h2>
+
+  {% if oggetto %}
+    <p>Stai recensendo: <strong>
+      {% if tipo == 'camera' %}Camera {{ oggetto.numero }}{% endif %}
+      {% if tipo == 'servizio' %}Servizio: {{ oggetto.tipo }}{% endif %}
+      {% if tipo == 'evento' %}Evento: {{ oggetto.titolo }}{% endif %}
+    </strong></p>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="testo" class="form-label">Testo della recensione</label>
+      <textarea name="testo" id="testo" class="form-control" rows="4" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="voto" class="form-label">Voto (1-5)</label>
+      <select name="voto" id="voto" class="form-select" required>
+        <option value="">Seleziona un voto</option>
+        {% for i in "12345" %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Invia Recensione</button>
+    <a href="{% url 'storico_prenotazioni' %}" class="btn btn-secondary">Annulla</a>
+  </form>
+</div>
+{% endblock %}

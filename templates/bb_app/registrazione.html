@@ -1,0 +1,55 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Registrazione{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+  <h2 class="mb-4 text-center">Registrazione cliente</h2>
+
+  {% if error %}
+    <div class="alert alert-danger text-center">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST" class="p-4 border rounded bg-white shadow-sm">
+    {% csrf_token %}
+
+    <!-- CLIENTE -->
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" name="nome" class="form-control" required value="{{ request.POST.nome }}">
+    </div>
+    <div class="mb-3">
+      <label for="cognome" class="form-label">Cognome</label>
+      <input type="text" name="cognome" class="form-control" required value="{{ request.POST.cognome }}">
+    </div>
+    <div class="mb-3">
+      <label for="numero_documento" class="form-label">Numero Documento</label>
+      <input type="text" name="numero_documento" class="form-control" required value="{{ request.POST.numero_documento }}">
+    </div>
+
+    <!-- Comuni -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" required value="{{ request.POST.email }}">
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="conferma_password" class="form-label">Conferma Password</label>
+      <input type="password" name="conferma_password" class="form-control" required>
+    </div>
+
+    <div class="d-grid mt-3">
+      <button type="submit" class="btn btn-primary">Registrati</button>
+    </div>
+
+    <p class="text-center mt-3">
+      Hai già un account?
+      <a href="{% url 'login' %}">Accedi</a>
+    </p>
+  </form>
+</div>
+{% endblock %}

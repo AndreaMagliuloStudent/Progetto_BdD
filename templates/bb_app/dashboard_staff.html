@@ -1,0 +1,36 @@
+{% extends "bb_app/base.html" %}
+{% block title %}Dashboard Staff{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+
+  <h1 class="display-5 fw-bold mb-3">
+      Benvenuto {{ utente.nome }} {{ utente.cognome }}!
+  </h1>
+
+  <p class="lead mb-5">
+      Qui trovi gli incarichi legati agli eventi del B&B.
+  </p>
+
+  <div class="row g-4 justify-content-center">
+
+      <!-- Card incarichi -->
+      <div class="col-md-5">
+          <div class="card shadow-sm border-0 h-100">
+              <div class="card-body">
+                  <h5 class="card-title">I miei incarichi</h5>
+                  <p class="card-text">
+                      Visualizza gli eventi a cui sei stato assegnato
+                      e il tuo ruolo operativo.
+                  </p>
+                  <a href="{% url 'staff_incarichi' %}"
+                     class="btn btn-primary">
+                     Vai agli incarichi
+                  </a>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+{% endblock %}
